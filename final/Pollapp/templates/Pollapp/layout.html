@@ -8,18 +8,27 @@
     <link rel="icon"href="{% static 'Pollapp/favicon.ico' %}">
     <title>Pollapp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'Pollapp/style.css' %}">
   </head>
   <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello
-      </h1>
-      <img src="{% static 'Pollapp/images/pollapp_icon.png' %}">
-      <p class="subtitle">
-        This is index site for <strong>Pollapp</strong>!
-      </p>
-    </div>
-  </section>
+    <section class="hero is-primary">
+      <nav class="level">
+        <p class="level-item has-text-centered">
+          <a class="link is-info">Home</a>
+        </p>
+        <p class="level-item has-text-centered">
+          <a class="link is-info">Polls</a>
+        </p>
+        <p class="level-item m-2">
+          <img src="{% static 'Pollapp/images/pollapp_icon.png'%}" alt="" style="height: 70px;">
+        </p>
+        <p class="level-item has-text-centered">
+          <a class="link is-info">Login</a>
+        </p>
+        <p class="level-item has-text-centered">
+          <a class="link is-info">Register</a>
+        </p>
+      </nav>
+    </section>
   </body>
 </html>
