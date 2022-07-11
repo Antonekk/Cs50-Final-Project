@@ -1,5 +1,12 @@
 footer{
     position: absolute;
-    bottom: 0px;
     width: 100% !important;
 }
+#logo{
+    height: 70px;
+}
+html, body{
+    background-color: #00d1b2;
+    height: 100%;
+}
+
