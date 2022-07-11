@@ -13,19 +13,19 @@
   <body>
     <section id = "menu" class="hero is-primary">
       <nav class="level">
-        <p class="level-item has-text-centered">
-          <a class="link is-info">Home</a>
+        <p class="level-item has-text-centered is-size-5">
+          <a href="{% url 'index' %}" class="link is-info" >Home</a>
         </p>
-        <p class="level-item has-text-centered">
+        <p class="level-item has-text-centered is-size-5">
           <a class="link is-info">Polls</a>
         </p>
         <a href="{% url 'index' %}" class="level-item m-2">
           <img id="logo"src="{% static 'Pollapp/images/pollapp_icon.png'%}" alt="">
         </a>
-        <p class="level-item has-text-centered">
+        <p class="level-item has-text-centered is-size-5">
           <a class="link is-info">Login</a>
         </p>
-        <p class="level-item has-text-centered">
+        <p class="level-item has-text-centered is-size-5">
           <a class="link is-info">Register</a>
         </p>
       </nav>

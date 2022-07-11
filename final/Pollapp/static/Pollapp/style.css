@@ -1,6 +1,8 @@
 footer{
-    position: absolute;
+    position: fixed;
+    bottom: 0px;
     width: 100% !important;
+    border-top: 1px black solid;
 }
 #logo{
     height: 70px;
