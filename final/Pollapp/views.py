@@ -6,3 +6,6 @@ def index (request):
 
 def register (request):
     return render(request, "Pollapp/register.html")
+
+def login (request):
+    return render(request, "Pollapp/login.html")

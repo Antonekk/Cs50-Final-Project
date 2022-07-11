@@ -12,6 +12,9 @@ html, body{
     height: 100%;
 }
 
-#register{
+#register , #login{
     margin-top: 10%;
+}
+#register-headline , #login-headline{
+    text-align: center;
 }
