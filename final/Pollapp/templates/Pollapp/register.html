@@ -3,30 +3,37 @@
 {% block body %}
 
 <div id ="register" class="column is-three-fifths is-offset-one-fifth">
-    <form  class="box ">
-        <h3 id = "register-headline" class="title is-3">Register</h3>
+    <form  class="box " action="{% url 'register' %}" method="post" >
+      {% csrf_token %}
+      <h3 id = "register-headline" class="title is-3">Register</h3>
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input class="input" type="text" name="username" placeholder="e.g. alex123">
+          </div>
+        </div>
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input class="input" type="email" placeholder="e.g. alex@example.com">
+            <input class="input" type="email" name="email" placeholder="e.g. alex@example.com">
           </div>
         </div>
       
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input class="input" type="password" placeholder="********">
+            <input class="input" type="password" name="password" placeholder="********">
           </div>
         </div>
     
         <div class="field">
             <label class="label">Confirm Password</label>
             <div class="control">
-              <input class="input" type="password" placeholder="********">
+              <input class="input" type="password" name="password_confirmation" placeholder="********">
             </div>
           </div>
       
-        <button class="button is-primary">Register</button>
+        <button class="button is-primary" type="submit">Register</button>
       </form>
 </div>
 
