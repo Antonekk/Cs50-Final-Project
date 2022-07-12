@@ -32,6 +32,17 @@ def register (request):
 
 def login_page (request):
     if request.method == "POST":
-        pass
+        #Get user data
+        email = request.POST["email"]
+        password = request.POST["password"]
+        user = authenticate(request, email=email, password=password)
+        #check if this user exists
+        if user is not None:
+            login(request, user)
+        else:
+            return render(request, "Pollapp/login.html")
+
     elif request.method == "GET":   
         return render(request, "Pollapp/login.html")
+
+

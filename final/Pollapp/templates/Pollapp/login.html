@@ -3,19 +3,20 @@
 {% block body %}
 
 <div id ="login" class="column is-three-fifths is-offset-one-fifth">
-    <form  class="box ">
+    <form  class="box" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
         <h3 id = "login-headline" class="title is-3">Login</h3>
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input class="input" type="email" placeholder="e.g. alex@example.com">
+            <input class="input" type="email" name="email" placeholder="e.g. alex@example.com">
           </div>
         </div>
       
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input class="input" type="password" placeholder="********">
+            <input class="input" type="password" name="password" placeholder="********">
           </div>
         </div>
         <button class="button is-primary">Login</button>
