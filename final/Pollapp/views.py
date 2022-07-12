@@ -5,7 +5,13 @@ def index (request):
     return render(request, "Pollapp/index.html")
 
 def register (request):
-    return render(request, "Pollapp/register.html")
+    if request.method == "POST":
+        pass
+    elif request.method == "GET":   
+        return render(request, "Pollapp/register.html")
 
 def login (request):
-    return render(request, "Pollapp/login.html")
+    if request.method == "POST":
+        pass
+    elif request.method == "GET":   
+        return render(request, "Pollapp/login.html")
