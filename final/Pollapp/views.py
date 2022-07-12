@@ -14,7 +14,9 @@ def register (request):
         password = request.POST["password"]
         password_confirmation = request.POST["password_confirmation"]
         if password != password_confirmation:
-            return render(request, "Pollapp/register.html")
+            return render(request, "Pollapp/register.html", {
+                "message": "Passwords must match"
+            })
 
         #Gets both username and email from user input
         username = request.POST["username"]
@@ -24,25 +26,34 @@ def register (request):
             user = User.objects.create_user(username, email, password)
             user.save()
         except:
-            return render(request, "Pollapp/register.html")
+            return render(request, "Pollapp/register.html", {
+                "message": "Username or Email already taken"
+            })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     elif request.method == "GET":   
         return render(request, "Pollapp/register.html")
 
-def login_page (request):
+def login_page(request):
     if request.method == "POST":
         #Get user data
-        email = request.POST["email"]
+        username = request.POST["username"]
         password = request.POST["password"]
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=username, password=password)
         #check if this user exists
         if user is not None:
             login(request, user)
+            return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "Pollapp/login.html")
+            return render(request, "Pollapp/login.html", {
+                "message": "Invalid username or/and password"
+            })
 
     elif request.method == "GET":   
         return render(request, "Pollapp/login.html")
+
+def logout_function(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("index"))
 
 

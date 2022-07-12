@@ -5,11 +5,12 @@
 <div id ="login" class="column is-three-fifths is-offset-one-fifth">
     <form  class="box" action="{% url 'login' %}" method="post">
       {% csrf_token %}
+        <h2 class="error">{{message}}</h2>
         <h3 id = "login-headline" class="title is-3">Login</h3>
         <div class="field">
-          <label class="label">Email</label>
+          <label class="label">Username</label>
           <div class="control">
-            <input class="input" type="email" name="email" placeholder="e.g. alex@example.com">
+            <input class="input" type="text" name="username" placeholder="e.g. alex@example.com">
           </div>
         </div>
       
