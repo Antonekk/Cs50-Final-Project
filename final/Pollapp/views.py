@@ -12,7 +12,8 @@ def profile(request):
     return render(request, "Pollapp/profile.html")
 
 
-
+def polls(request):
+    return render(request, "Pollapp/polls.html")
 
 
 
