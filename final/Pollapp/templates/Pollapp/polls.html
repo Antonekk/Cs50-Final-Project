@@ -1,6 +1,7 @@
 {% extends "Pollapp/layout.html" %}
 
 {% block body %}
+{% if user.is_authenticated %}
 <div id="user_profile" class="card">
     <div class="card-content">
       <div class="media">
@@ -11,5 +12,6 @@
       </div>
     </div>
   </div>
+{% endif %}
 
 {% endblock%}
