@@ -7,7 +7,9 @@
       <div class="media">
         <div class="media-content">
           <p class="title is-4">Create new poll</p>
-          <button class="button is-primary is-rounded">Create</button>
+          <form action="{% url 'create_poll' %}">
+            <button class="button is-primary is-rounded" type="submit">Create</button>
+          </form>
         </div>
       </div>
     </div>

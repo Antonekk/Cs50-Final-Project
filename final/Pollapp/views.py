@@ -18,6 +18,9 @@ def profile(request):
 def polls(request):
     return render(request, "Pollapp/polls.html")
 
+def create_poll(request):
+    return render(request, "Pollapp/create_poll.html")
+
 
 
 #Register, Login and Logout functions
