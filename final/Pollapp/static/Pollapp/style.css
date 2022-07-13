@@ -1,15 +1,14 @@
 footer{
-    position: fixed;
-    bottom: 0px;
     width: 100% !important;
     border-top: 1px black solid;
+    margin-top: 16%;
 }
-#logo{
+    #logo{
     height: 70px;
 }
 html, body{
     background-color: #00d1b2;
-    height: 100%;
+    min-height: 100%;
 }
 
 #register , #login{
@@ -21,5 +20,15 @@ html, body{
 .error{
     color: red;
     text-align: center;
+}
+#user_profile{
+    text-align: center;
+    width: 20%;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#loginform, #registerform{
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 8px 30px 0 rgba(0, 0, 0, 0.19);
 }
 

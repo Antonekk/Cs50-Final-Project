@@ -8,6 +8,16 @@ from .models import User
 def index (request):
     return render(request, "Pollapp/index.html")
 
+def profile(request):
+    return render(request, "Pollapp/profile.html")
+
+
+
+
+
+
+#Register, Login and Logout functions
+
 def register (request):
     if request.method == "POST":
         # Gets both passwords value and checks if they match
@@ -30,7 +40,7 @@ def register (request):
                 "message": "Username or Email already taken"
             })
         login(request, user)
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("profile"))
     elif request.method == "GET":   
         return render(request, "Pollapp/register.html")
 
@@ -43,7 +53,7 @@ def login_page(request):
         #check if this user exists
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("profile"))
         else:
             return render(request, "Pollapp/login.html", {
                 "message": "Invalid username or/and password"
@@ -55,5 +65,7 @@ def login_page(request):
 def logout_function(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+
 
 

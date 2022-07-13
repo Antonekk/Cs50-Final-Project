@@ -3,7 +3,7 @@
 {% block body %}
 
 <div id ="login" class="column is-three-fifths is-offset-one-fifth">
-    <form  class="box" action="{% url 'login' %}" method="post">
+    <form  id="loginform" class="box" action="{% url 'login' %}" method="post">
       {% csrf_token %}
         <h2 class="error">{{message}}</h2>
         <h3 id = "login-headline" class="title is-3">Login</h3>
