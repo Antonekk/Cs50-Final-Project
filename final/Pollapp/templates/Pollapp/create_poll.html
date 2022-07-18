@@ -4,6 +4,56 @@
 {% if user.is_authenticated %}
 
 
+<form class="box">
+    <div class="field">
+        <label class="label">Question</label>
+        <div class="control">
+        <input class="input" type="text" placeholder="Enter your question">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Answer #1</label>
+        <div class="control">
+        <input class="input" type="text" placeholder="Enter your question">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Answer #2</label>
+        <div class="control">
+        <input class="input" type="text" placeholder="Enter your question">
+        </div>
+    </div>
+
+    <div class="control buttons are-small">
+        <button class="button is-primary is-rounded is-outlined">+</button>
+    </div>
+       
+    <div class="field">
+        <div class="control">
+        <label class="radio">
+            <input type="radio" name="question">
+            Public
+        </label>
+        <label class="radio">
+            <input type="radio" name="question">
+            Private
+        </label>
+        </div>
+    </div>
+    
+    <div class="field is-grouped">
+        <div class="control">
+        <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+        <button class="button is-link is-light">Cancel</button>
+        </div>
+    </div>
+    <div id="test"></div>
+</form>
+
 {% endif %}
 
 {% endblock%}
