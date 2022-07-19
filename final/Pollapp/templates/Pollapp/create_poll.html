@@ -4,7 +4,7 @@
 {% if user.is_authenticated %}
 
 
-<form class="box">
+<form id="createpollform" class="box">
     <div class="field">
         <label class="label">Question</label>
         <div class="control">
@@ -12,22 +12,27 @@
         </div>
     </div>
 
-    <div class="field">
-        <label class="label">Answer #1</label>
-        <div class="control">
-        <input class="input" type="text" placeholder="Enter your question">
+        <div class="field">
+            <label class="label">Answer #1</label>
+            <div class="control">
+            <input class="input" type="text" placeholder="Enter your question">
+            </div>
         </div>
-    </div>
 
-    <div class="field">
-        <label class="label">Answer #2</label>
-        <div class="control">
-        <input class="input" type="text" placeholder="Enter your question">
+        <div class="field">
+            <label class="label">Answer #2</label>
+            <div class="control">
+            <input class="input" type="text" placeholder="Enter your question">
+            </div>
         </div>
-    </div>
+
+        <div id="answers">
+
+        </div>
+
 
     <div class="control buttons are-small">
-        <button class="button is-primary is-rounded is-outlined">+</button>
+        <button  onclick="addField()" type="button" class="button is-primary is-rounded is-outlined">+</button>
     </div>
        
     <div class="field">
@@ -51,7 +56,7 @@
         <button class="button is-link is-light">Cancel</button>
         </div>
     </div>
-    <div id="test"></div>
+
 </form>
 
 {% endif %}
