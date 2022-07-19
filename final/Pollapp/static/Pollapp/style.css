@@ -52,4 +52,7 @@ html, body{
 #answers{
     margin-bottom: 20px;
 }
+#add_and_delete{
+    display: none;
+}
 
