@@ -4,25 +4,26 @@
 {% if user.is_authenticated %}
 
 
-<form id="createpollform" class="box">
+<form id="createpollform" class="box" action='{% url "create_poll" %}' method="post" >
+    {% csrf_token %}
     <div id="question" class="field">
         <label class="label">Question</label>
         <div class="control">
-        <input class="input" type="text" placeholder="Enter your question">
+        <input class="input" type="text" name="question_name" placeholder="Enter your question">
         </div>
     </div>
 
         <div class="field">
             <label class="label">Answer #1</label>
             <div class="control">
-            <input class="input" type="text" placeholder="Enter your question">
+            <input class="input" type="text" name="answer1_name" placeholder="Enter your question">
             </div>
         </div>
 
         <div class="field">
             <label class="label">Answer #2</label>
             <div class="control">
-            <input class="input" type="text" placeholder="Enter your question">
+            <input class="input" type="text" name="answer2_name" placeholder="Enter your question">
             </div>
         </div>
 
@@ -39,17 +40,12 @@
     
        
     <div class="field">
-        <div class="control">
-        <label class="radio">
-            <input type="radio" name="question">
-            Public
-        </label>
-        <label class="radio">
-            <input type="radio" name="question">
+        <label class="checkbox">
+            <input type="checkbox" name="private">
             Private
-        </label>
-        </div>
+          </label>
     </div>
+    
     
     <div class="field is-grouped">
         <div class="control">

@@ -9,7 +9,7 @@ function addField(){
         answer.innerHTML = `
         <label class="label">Answer #${i}</label>
         <div class="control">
-            <input id="answer_input${i}"class="input" type="text" placeholder="Enter your answer"></input>
+            <input class="input" type="text"  name="answer${i}_name" placeholder="Enter your answer"></input>
         </div>`;
         document.getElementById("answers").append(answer);
         const option = document.getElementById(`answer${i}`);

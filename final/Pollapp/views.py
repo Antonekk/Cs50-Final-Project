@@ -19,7 +19,20 @@ def polls(request):
     return render(request, "Pollapp/polls.html")
 
 def create_poll(request):
-    return render(request, "Pollapp/create_poll.html")
+    if request.method == "GET":
+        return render(request, "Pollapp/create_poll.html")
+    elif request.method == "POST":
+        question = request.POST['question_name']
+        is_private = request.POST['private']
+        answers = []
+        for i in range(1,11):
+            answer_num = 'answer'+str(i)+'_name'
+            try : 
+                answers.append(request.POST[answer_num])
+            except:
+                break
+        print(answers)
+
 
 
 
