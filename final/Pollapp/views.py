@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import User
+from .models import User, Option, Votes, Poll
 
 # Create your views here.
 def index (request):
@@ -23,7 +23,11 @@ def create_poll(request):
         return render(request, "Pollapp/create_poll.html")
     elif request.method == "POST":
         question = request.POST['question_name']
-        is_private = request.POST['private']
+        try:
+            is_private = request.POST['private']
+            is_private = True
+        except:
+            is_private = False
         answers = []
         for i in range(1,11):
             answer_num = 'answer'+str(i)+'_name'
@@ -31,8 +35,24 @@ def create_poll(request):
                 answers.append(request.POST[answer_num])
             except:
                 break
-        print(answers)
+        poll = Poll(
+            user = request.user,
+            poll_question = question,
+            private = is_private
 
+        )
+        poll.save()
+        for answer in answers:
+            try:
+                option = Option.objects.get(question=answer)
+            except:
+                option = Option(
+                    question = answer
+                )
+                option.save()
+            poll.options.add(option)
+        poll.save()
+        return HttpResponseRedirect(reverse("polls"))
 
 
 
