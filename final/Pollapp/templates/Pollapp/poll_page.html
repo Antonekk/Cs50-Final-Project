@@ -1,0 +1,8 @@
+{% extends "Pollapp/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<h1>{{poll.poll_question}}</h1>
+{% endif %}
+
+{% endblock%}

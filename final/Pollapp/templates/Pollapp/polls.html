@@ -22,7 +22,7 @@
           <div class="media-content">
             <p class="title is-5">Author: {{poll.user}}</p>
               <p class="title is-3">Question: {{poll.poll_question}}</p>
-              <form action="{% url 'create_poll' %}">
+              <form action="{% url 'poll_page' poll.url %}">
                 <button class="button is-primary is-rounded" type="submit">Vote</button>
               </form>
             </div>

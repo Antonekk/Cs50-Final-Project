@@ -20,8 +20,19 @@ def profile(request):
 def polls(request):
     all_public_polls = Poll.objects.filter(private=False)
     return render(request, "Pollapp/polls.html", {
-        "polls":all_public_polls,
+        "polls" : all_public_polls,
     })
+
+def poll_page(request, url):
+    try:
+        poll_data = Poll.objects.get(url=url)
+        return render(request, "Pollapp/poll_page.html" , {
+            "poll" : poll_data,
+        })
+    except:
+        return render(request, "Pollapp/error_page.html" , {
+            "message" : "Wrong url",
+        })
 
 def create_poll(request):
     if request.method == "GET":

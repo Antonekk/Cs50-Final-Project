@@ -1,0 +1,12 @@
+{% extends "Pollapp/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+
+<div class="box poll">
+    <h1 class="title is-1">{{message}}</h1>
+</div>
+{% endif %}
+
+{% endblock%}
