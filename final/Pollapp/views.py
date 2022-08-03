@@ -1,3 +1,5 @@
+import random
+import string
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
@@ -35,10 +37,17 @@ def create_poll(request):
                 answers.append(request.POST[answer_num])
             except:
                 break
+        url = ''.join(random.choice(string.ascii_letters) for i in range(20))
+        if_url_exists = Poll.objects.filter(url=url)
+        while len(if_url_exists) != 0:
+            url = ''.join(random.choice(string.ascii_letters) for i in range(20))
+            if_url_exists = Poll.objects.filter(url=url)
+
         poll = Poll(
             user = request.user,
             poll_question = question,
-            private = is_private
+            private = is_private,
+            url = url
 
         )
         poll.save()

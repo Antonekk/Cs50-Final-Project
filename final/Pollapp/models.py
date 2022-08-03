@@ -26,6 +26,7 @@ class Votes(models.Model):
 
 class Poll(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = models.CharField(max_length=24)
     poll_question = models.CharField(max_length=64)
     options = models.ManyToManyField(Option, symmetrical=False, blank=True , related_name="options")
     votes = models.ManyToManyField(Votes, symmetrical=False, blank=True, related_name="votes")
