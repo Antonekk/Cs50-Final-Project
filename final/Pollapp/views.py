@@ -18,7 +18,10 @@ def profile(request):
 
 
 def polls(request):
-    return render(request, "Pollapp/polls.html")
+    all_public_polls = Poll.objects.filter(private=False)
+    return render(request, "Pollapp/polls.html", {
+        "polls":all_public_polls,
+    })
 
 def create_poll(request):
     if request.method == "GET":

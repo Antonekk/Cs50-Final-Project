@@ -2,7 +2,7 @@
 
 {% block body %}
 {% if user.is_authenticated %}
-<div id="poll" class="card">
+<div id="create_poll_card" class="card poll">
     <div class="card-content">
       <div class="media">
         <div class="media-content">
@@ -14,6 +14,22 @@
       </div>
     </div>
   </div>
+
+  {% for poll in polls %}
+    <div class="card poll">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-5">Author: {{poll.user}}</p>
+              <p class="title is-3">Question: {{poll.poll_question}}</p>
+              <form action="{% url 'create_poll' %}">
+                <button class="button is-primary is-rounded" type="submit">Vote</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
 {% endif %}
 
 {% endblock%}

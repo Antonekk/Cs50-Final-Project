@@ -10,6 +10,9 @@ html, body{
     min-height: 100%;
 }
 
+#create_poll_card{
+    margin-bottom: 150px;
+}
 #register , #login{
     margin-top: 10%;
 }
@@ -20,7 +23,7 @@ html, body{
     color: red;
     text-align: center;
 }
-#user_profile, #poll{
+#user_profile, .poll{
     text-align: center;
     width: 30%;
     margin: auto;
