@@ -32,15 +32,21 @@ html, body{
 }
 
 @media (max-width: 1500px) {
-    #user_profile, #poll {
+    #user_profile, .poll {
         width: 50%;
     }
 }
 @media (max-width: 800px) {
-    #user_profile, #poll {
+    #user_profile, .poll {
         width: 70%;
     }
 }
+@media (max-width: 600px) {
+    #user_profile, .poll {
+        width: 90%;
+    }
+}
+
 
 #loginform, #registerform{
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 8px 30px 0 rgba(0, 0, 0, 0.19);
