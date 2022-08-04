@@ -14,7 +14,10 @@ def index (request):
 
 @login_required(redirect_field_name='login')
 def profile(request):
-    return render(request, "Pollapp/profile.html")
+    user_polls = Poll.objects.filter(user=request.user)
+    return render(request, "Pollapp/profile.html", {
+        "polls" : user_polls,
+    })
 
 
 def polls(request):
