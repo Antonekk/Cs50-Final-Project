@@ -65,6 +65,10 @@ html, body{
     display: none;
 }
 
+.top-margin-table-button{
+    margin-top: 10px;
+}
+
 #question{
     margin-bottom: 30px;
 }

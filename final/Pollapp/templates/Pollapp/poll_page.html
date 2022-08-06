@@ -2,7 +2,30 @@
 
 {% block body %}
 {% if user.is_authenticated %}
-<h1>{{poll.poll_question}}</h1>
+
+<div class="card poll">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-5">Author: {{poll.user}}</p>
+            <p class="title is-3">Question: {{poll.poll_question}}</p>
+            <div class="table-container">
+                <table class="table">
+                        {% for option in options %}
+                        <tr>
+                            <th class="subtitle is-3">{{option}}</th>
+                            <th>
+                                <button class="button is-success is-outlined is-rounded top-margin-table-button ">Vote</button>
+                            </th>  
+                        </tr>
+                        {% endfor %}
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endif %}
 
 {% endblock%}

@@ -31,6 +31,7 @@ def poll_page(request, url):
         poll_data = Poll.objects.get(url=url)
         return render(request, "Pollapp/poll_page.html" , {
             "poll" : poll_data,
+            "options": poll_data.options.all(),
         })
     except:
         return render(request, "Pollapp/error_page.html" , {
