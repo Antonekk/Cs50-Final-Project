@@ -13,14 +13,24 @@
                 <table class="table">
                         {% for option in options %}
                         <tr>
-                            <th class="subtitle is-3">{{option}}</th>
-                            <th>
-                                <button class="button is-success is-outlined is-rounded top-margin-table-button ">Vote</button>
-                            </th>  
+                            <form action='{% url "poll_page" poll.url %}' method="post">
+                              {% csrf_token %}
+                                <th class="subtitle is-3">
+                                  {{option}}
+                                  <input type = "hidden" name = "option" value = "{{option}}"></input>
+                                </th>
+                                <th>
+                                  {% if option == voted_on %}
+                                    <button class="button is-danger is-outlined is-rounded top-margin-table-button " type="submit">Un Vote</button>
+                                  {% else %}
+                                    <button class="button is-success is-outlined is-rounded top-margin-table-button " type="submit">Vote</button>
+                                  {% endif %}
+                              </th>  
+                            </form>
                         </tr>
                         {% endfor %}
                 </table>
-              </div>
+            </div>
           </div>
         </div>
       </div>

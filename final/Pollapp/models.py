@@ -9,6 +9,8 @@ from django.utils import timezone
 
 # Create your models here.
 
+
+
 class User(AbstractUser):
     def __str__(self):
         return f"{self.username}"

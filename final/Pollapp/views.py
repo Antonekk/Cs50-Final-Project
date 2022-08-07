@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 from .models import User, Option, Votes, Poll
 
@@ -29,14 +30,49 @@ def polls(request):
 def poll_page(request, url):
     try:
         poll_data = Poll.objects.get(url=url)
-        return render(request, "Pollapp/poll_page.html" , {
-            "poll" : poll_data,
-            "options": poll_data.options.all(),
-        })
     except:
         return render(request, "Pollapp/error_page.html" , {
             "message" : "Wrong url",
         })
+    if request.method == "GET":    
+        all_votes = poll_data.votes.all()
+        voted_option = ""
+        for i in all_votes:
+            if request.user == i.voter:
+                voted_option = i.option
+
+        return render(request, "Pollapp/poll_page.html" , {
+                "poll" : poll_data,
+                "options": poll_data.options.all(),
+                "voted_on": voted_option,
+            })
+    elif request.method == "POST":
+        vote = request.POST["option"]
+        try:
+            option = Option.objects.get(question=vote)
+        except:
+            return render(request, "Pollapp/error_page.html" , {
+            "message" : "Wrong option",
+        })
+        all_votes = poll_data.votes.all()
+        found = False
+        for i in all_votes:
+            if request.user == i.voter:
+                if len(Votes.objects.filter(voter=request.user, option=option))==0:
+                    vote = Votes.objects.create(voter=request.user, option=option)
+                    vote.save()
+                    poll_data.votes.add(vote)
+                    i.delete()
+                else:
+                    i.delete()
+                found=True
+        if not found:
+            vote = Votes.objects.create(voter=request.user, option=option)
+            vote.save()
+            poll_data.votes.add(vote)
+        poll_data.save()
+
+        return redirect("poll_page", url=url)
 
 def create_poll(request):
     if request.method == "GET":
