@@ -40,11 +40,19 @@ def poll_page(request, url):
         for i in all_votes:
             if request.user == i.voter:
                 voted_option = i.option
-
+        
+        options = poll_data.options.all()
+        option_position = []
+        votes_number = []
+        for opt in options:
+            votes_number.append(len(poll_data.votes.filter(option=opt)))
+            option_position.append(opt.question)
         return render(request, "Pollapp/poll_page.html" , {
                 "poll" : poll_data,
                 "options": poll_data.options.all(),
                 "voted_on": voted_option,
+                "options_set": option_position,
+                "votes_number": votes_number,
             })
     elif request.method == "POST":
         vote = request.POST["option"]
