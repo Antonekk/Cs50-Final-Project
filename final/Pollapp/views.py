@@ -15,14 +15,14 @@ def index (request):
 
 @login_required(redirect_field_name='login')
 def profile(request):
-    user_polls = Poll.objects.filter(user=request.user)
+    user_polls = Poll.objects.filter(user=request.user).order_by("-id")
     return render(request, "Pollapp/profile.html", {
         "polls" : user_polls,
     })
 
 
 def polls(request):
-    all_public_polls = Poll.objects.filter(private=False)
+    all_public_polls = Poll.objects.filter(private=False).order_by("-id")
     return render(request, "Pollapp/polls.html", {
         "polls" : all_public_polls,
     })
