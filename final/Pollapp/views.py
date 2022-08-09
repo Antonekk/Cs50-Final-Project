@@ -1,3 +1,4 @@
+from asyncore import poll
 import random
 import string
 from django.shortcuts import render
@@ -47,12 +48,17 @@ def poll_page(request, url):
         for opt in options:
             votes_number.append(len(poll_data.votes.filter(option=opt)))
             option_position.append(opt.question)
+        if request.user in poll_data.likes.all():
+            liked = True
+        else:
+            liked = False
         return render(request, "Pollapp/poll_page.html" , {
                 "poll" : poll_data,
                 "options": poll_data.options.all(),
                 "voted_on": voted_option,
                 "options_set": option_position,
                 "votes_number": votes_number,
+                "liked": liked
             })
     elif request.method == "POST":
         vote = request.POST["option"]
@@ -82,6 +88,28 @@ def poll_page(request, url):
 
         return redirect("poll_page", url=url)
 
+@login_required(redirect_field_name='login')
+def like(request, url):
+    if request.method == 'POST':
+        try:
+            poll_data = Poll.objects.get(url=url)
+            if request.POST["like"] == 'like':
+                poll_data.likes.add(request.user)
+                poll_data.save()
+            elif request.POST["like"] == 'unlike':
+                poll_data.likes.remove(request.user)
+                poll_data.save()
+            return redirect("poll_page", url=url)
+        except:
+            return render(request, "Pollapp/error_page.html" , {
+                "message" : "Wrong url",
+            })
+    else:
+        return render(request, "Pollapp/error_page.html" , {
+                "message" : "Wrong method",
+            })
+
+@login_required(redirect_field_name='login')
 def create_poll(request):
     if request.method == "GET":
         return render(request, "Pollapp/create_poll.html")

@@ -1,17 +1,27 @@
 {% extends "Pollapp/layout.html" %}
 
 {% block body %}
-{% if user.is_authenticated %}
+
 
 <div class="card poll">
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <button class="button is-info is-outlined is-rounded small-bottom-margin " type="submit">Like</button>
+          {% if user.is_authenticated %}
+          <form action='{% url "like" poll.url %}' method="post">
+            {% csrf_token %}
+            {% if liked %}
+              <button class="button is-warning is-outlined is-rounded small-bottom-margin " type="submit" name="like" value="unlike">Unlike</button>
+            {% else %}
+              <button class="button is-info is-outlined is-rounded small-bottom-margin " type="submit" name="like" value="like">Like</button>
+            {% endif %}
+          </form>
+          {% endif %}
           
           <p class="title is-5">Author: {{poll.user}}</p>
             <p class="title is-3">Question: {{poll.poll_question}}</p>
             <div class="table-container">
+              {% if user.is_authenticated %}
                 <table class="table">
                         {% for option in options %}
                         <tr>
@@ -31,7 +41,9 @@
                             </form>
                         </tr>
                         {% endfor %}
+                      
                 </table>
+                {% endif %}
             </div>
           </div>
           
@@ -69,6 +81,6 @@
       });
 
     </script>
-{% endif %}
+
 
 {% endblock%}
