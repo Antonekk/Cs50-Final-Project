@@ -34,6 +34,7 @@ class Poll(models.Model):
     votes = models.ManyToManyField(Votes, symmetrical=False, blank=True, related_name="votes")
     likes = models.ManyToManyField(User, symmetrical=False, blank=True, related_name="likes")
     private = models.BooleanField()
+    active = models.BooleanField()
     def __str__(self):
         return f"{self.poll_question}"
 

@@ -88,6 +88,29 @@ def poll_page(request, url):
 
         return redirect("poll_page", url=url)
 
+
+@login_required(redirect_field_name='login')
+def deactivate(request, url):
+    if request.method == 'POST':
+        try:
+            poll_data = Poll.objects.get(url=url)
+            if request.user == poll_data.user:
+                if poll_data.active == True:
+                    poll_data.active = False
+                else:
+                    poll_data.active = True
+                poll_data.save()
+                return redirect("poll_page", url=url)
+            else:
+                return render(request, "Pollapp/error_page.html" , {
+                "message" : "You are not the creator of this poll",
+            })
+        except:
+            return render(request, "Pollapp/error_page.html" , {
+                "message" : "Wrong url",
+            })
+
+
 @login_required(redirect_field_name='login')
 def like(request, url):
     if request.method == 'POST':

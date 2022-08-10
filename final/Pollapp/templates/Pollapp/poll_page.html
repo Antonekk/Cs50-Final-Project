@@ -8,6 +8,16 @@
       <div class="media">
         <div class="media-content">
           {% if user.is_authenticated %}
+          {% if poll.user == request.user %}
+          <form action='{% url "deactivate" poll.url %}' method="post">
+            {% csrf_token %}
+            {% if poll.active %}
+              <button class="button is-danger is-outlined is-rounded small-bottom-margin " type="submit" name="like" value="like">Deactivate</button>
+            {% else %}
+              <button class="button is-primary is-outlined is-rounded small-bottom-margin " type="submit" name="like" value="like">Reactivate</button>
+            {% endif %}
+          </form>
+          {% else%}
           <form action='{% url "like" poll.url %}' method="post">
             {% csrf_token %}
             {% if liked %}
@@ -17,6 +27,8 @@
             {% endif %}
           </form>
           {% endif %}
+          {% endif %}
+          
           
           <p class="title is-5">Author: {{poll.user}}</p>
             <p class="title is-3">Question: {{poll.poll_question}}</p>
