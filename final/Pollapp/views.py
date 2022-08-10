@@ -15,15 +15,30 @@ def index (request):
     return render(request, "Pollapp/index.html")
 
 @login_required(redirect_field_name='login')
-def profile(request):
-    user_polls = Poll.objects.filter(user=request.user).order_by("-id")
+def profile(request, category):
+    if category == 'archived':
+        user_polls = Poll.objects.filter(user=request.user, active=False).order_by("-id")
+    elif category == 'liked':
+        user_polls = Poll.objects.filter(active=True).order_by("-id")
+        liked = []
+        for u_poll in user_polls:
+            if request.user in u_poll.likes.all():
+                liked.append(u_poll)
+        user_polls=liked
+    elif category=='active':
+        user_polls = Poll.objects.filter(user=request.user, active=True).order_by("-id")
+    else:
+        return render(request, "Pollapp/error_page.html" , {
+            "message" : "Wrong url",
+        })
     return render(request, "Pollapp/profile.html", {
         "polls" : user_polls,
+        "category": category,
     })
 
 
 def polls(request):
-    all_public_polls = Poll.objects.filter(private=False).order_by("-id")
+    all_public_polls = Poll.objects.filter(private=False, active=True).order_by("-id")
     return render(request, "Pollapp/polls.html", {
         "polls" : all_public_polls,
     })
@@ -202,7 +217,7 @@ def register (request):
                 "message": "Username or Email already taken"
             })
         login(request, user)
-        return HttpResponseRedirect(reverse("profile"))
+        return redirect("profile", category="active")
     elif request.method == "GET":   
         return render(request, "Pollapp/register.html")
 
@@ -215,7 +230,7 @@ def login_page(request):
         #check if this user exists
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("profile"))
+            return redirect("profile", category="active")
         else:
             return render(request, "Pollapp/login.html", {
                 "message": "Invalid username or/and password"

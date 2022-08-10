@@ -16,9 +16,24 @@
       </div>
       <div class="tabs is-centered">
         <ul>
-          <li class="is-active"><a>Your Polls</a></li>
-          <li><a>Archived</a></li>
-          <li><a>Likes</a></li>
+          
+          {% if category == "active"%}
+            <li class="is-active"><a>Your Polls</a></li>
+          {% else %}
+            <li><a href="{% url 'profile' 'active'%}">Your Polls</a></li>
+          {% endif %}
+
+          {% if category == "archived"%}
+            <li class="is-active"><a>Archived</a></li>
+          {% else %}
+            <li><a href="{% url 'profile' 'archived'%}">Archived</a></li>
+          {% endif %}
+
+          {% if category == "liked"%}
+            <li class="is-active"><a>Liked</a></li>
+          {% else %}
+            <li><a href="{% url 'profile' 'liked'%}">Liked</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
