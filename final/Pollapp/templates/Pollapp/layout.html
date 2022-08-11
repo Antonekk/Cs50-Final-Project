@@ -27,7 +27,7 @@
         </a>
         {% if user.is_authenticated %}
         <p class="level-item has-text-centered is-size-5">
-          <a href="{% url 'profile' 'active'%}" class="link is-info">Profile</a>
+          <a href="{% url 'profile' 'active' '1'%}" class="link is-info">Profile</a>
         </p>
         <p  class="level-item has-text-centered is-size-5" >
           <a href="{% url 'logout' %}" class="link is-info">Logout</a>

@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.core.paginator import Paginator
 
 from .models import User, Option, Votes, Poll
 
@@ -14,8 +15,21 @@ from .models import User, Option, Votes, Poll
 def index (request):
     return render(request, "Pollapp/index.html")
 
+
+
+def pagination(pag_objects, page_num):
+    page_view = Paginator(pag_objects,1)
+    page_info = {
+        "contents": page_view.page(page_num).object_list,
+        "number_of_pages": page_view.num_pages,
+        "has_next": page_view.page(page_num).has_next(),
+        "has_previous": page_view.page(page_num).has_previous(),
+    }
+    return page_info
+
+
 @login_required(redirect_field_name='login')
-def profile(request, category):
+def profile(request, category, page_num):
     if category == 'archived':
         user_polls = Poll.objects.filter(user=request.user, active=False).order_by("-id")
     elif category == 'liked':
@@ -31,8 +45,26 @@ def profile(request, category):
         return render(request, "Pollapp/error_page.html" , {
             "message" : "Wrong url",
         })
+    
+    user_polls_info = pagination(user_polls, int(page_num))
+    if int(page_num) >= 3:
+        has_first = True
+    else:
+        has_first = False
+    if int(page_num) <= user_polls_info["number_of_pages"]-2:
+        has_last = True
+    else:
+        has_last = False
     return render(request, "Pollapp/profile.html", {
-        "polls" : user_polls,
+        "current_page_number": int(page_num),
+        "polls" : user_polls_info["contents"],
+        "number_of_pages": user_polls_info["number_of_pages"],
+        "has_next": user_polls_info["has_next"],
+        "next":int(page_num)+1,
+        "has_previous": user_polls_info["has_previous"],
+        "previous":int(page_num)-1,
+        "has_first":has_first,
+        "has_last": has_last,
         "category": category,
     })
 
