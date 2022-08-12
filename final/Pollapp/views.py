@@ -45,8 +45,12 @@ def profile(request, category, page_num):
         return render(request, "Pollapp/error_page.html" , {
             "message" : "Wrong url",
         })
-    
-    user_polls_info = pagination(user_polls, int(page_num))
+    try:
+        user_polls_info = pagination(user_polls, int(page_num))
+    except:
+         return render(request, "Pollapp/error_page.html" , {
+            "message" : "Wrong url",
+        })
     if int(page_num) >= 3:
         has_first = True
     else:
@@ -69,10 +73,34 @@ def profile(request, category, page_num):
     })
 
 
-def polls(request):
+def polls(request, page_num):
     all_public_polls = Poll.objects.filter(private=False, active=True).order_by("-id")
+
+    try:
+        user_polls_info = pagination(all_public_polls, int(page_num))
+    except:
+         return render(request, "Pollapp/error_page.html" , {
+            "message" : "Wrong url",
+        })
+    if int(page_num) >= 3:
+        has_first = True
+    else:
+        has_first = False
+    if int(page_num) <= user_polls_info["number_of_pages"]-2:
+        has_last = True
+    else:
+        has_last = False
+
     return render(request, "Pollapp/polls.html", {
-        "polls" : all_public_polls,
+        "current_page_number": int(page_num),
+        "polls" : user_polls_info["contents"],
+        "number_of_pages": user_polls_info["number_of_pages"],
+        "has_next": user_polls_info["has_next"],
+        "next":int(page_num)+1,
+        "has_previous": user_polls_info["has_previous"],
+        "previous":int(page_num)-1,
+        "has_first":has_first,
+        "has_last": has_last,
     })
 
 def poll_page(request, url):
@@ -221,7 +249,7 @@ def create_poll(request):
                 option.save()
             poll.options.add(option)
         poll.save()
-        return HttpResponseRedirect(reverse("polls"))
+        return redirect("polls", page_num="1")
 
 
 

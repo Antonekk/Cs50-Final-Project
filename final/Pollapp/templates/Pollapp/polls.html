@@ -15,6 +15,40 @@
     </div>
   </div>
 
+  <div class="card poll">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <nav style="width: 100%; height: 100%;"class="pagination is-small is-centered" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+              {% if has_first %}
+                <li><a class="pagination-link" href="{% url 'polls' '1' %}" aria-label="Goto page {{current_page_number}}">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+              {% endif %}
+              
+              {% if has_previous %}
+                <li><a class="pagination-link"  href="{% url 'polls' previous %}"  aria-label="Goto page {{current_page_number}}">{{previous}}</a></li>
+              {% endif %}
+
+              <li><a class="pagination-link is-current" aria-label="Page {{current_page_number}}" aria-current="page">{{current_page_number}}</a></li>
+
+              {% if has_next %}
+                <li><a class="pagination-link" href="{% url 'polls' next %}" aria-label="Goto page {{current_page_number}}">{{next}}</a></li>
+              {% endif %}
+
+              {% if has_last %}
+              <li><span class="pagination-ellipsis">&hellip;</span></li>
+              <li><a class="pagination-link" href="{% url 'polls' number_of_pages %}"  aria-label="Goto page {{current_page_number}}">{{number_of_pages}}</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   {% for poll in polls %}
     {% if poll.active %}
       <div class="card poll">
