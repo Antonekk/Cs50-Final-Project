@@ -18,7 +18,7 @@ def index (request):
 
 
 def pagination(pag_objects, page_num):
-    page_view = Paginator(pag_objects,1)
+    page_view = Paginator(pag_objects,5)
     page_info = {
         "contents": page_view.page(page_num).object_list,
         "number_of_pages": page_view.num_pages,
