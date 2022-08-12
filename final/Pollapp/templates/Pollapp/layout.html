@@ -9,6 +9,7 @@
     <title>Pollapp</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="{% static 'Pollapp/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
      <script src="{% static 'Pollapp/frontend_code.js' %}"></script>
@@ -49,10 +50,10 @@
       <section class="hero is-primary">
         <nav class="level">
           <p class="level-item has-text-centered">
-            <a class="link is-info">About</a>
+            <a class="link is-info" href="{% url 'about' %}">About</a>
           </p>
           <p class="level-item has-text-centered">
-            <a class="link is-info">Contact</a>
+            <a class="link is-info" href="{% url 'contact' %}">Contact</a>
           </p>
           <p class="level-item has-text-centered">
             <a class="link is-info" href="https://github.com/Antonekk/Cs50-Final-Project" target="_blank" rel="noreferrer noopener">Github</a>

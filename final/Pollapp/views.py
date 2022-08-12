@@ -15,7 +15,11 @@ from .models import User, Option, Votes, Poll
 def index (request):
     return render(request, "Pollapp/index.html")
 
+def contact(request):
+    return render(request, "Pollapp/contact.html")
 
+def about(request):
+    return render(request, "Pollapp/about.html")
 
 def pagination(pag_objects, page_num):
     page_view = Paginator(pag_objects,5)
