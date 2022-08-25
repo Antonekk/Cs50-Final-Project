@@ -8,8 +8,11 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.core.paginator import Paginator
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .models import User, Option, Votes, Poll
+from .serializers import PollSerializer
 
 # Create your views here.
 def index (request):
@@ -281,7 +284,7 @@ def register (request):
                 "message": "Username or Email already taken"
             })
         login(request, user)
-        return redirect("profile", category="active")
+        return redirect("profile", category="active", page_num="1")
     elif request.method == "GET":   
         return render(request, "Pollapp/register.html")
 
@@ -294,7 +297,7 @@ def login_page(request):
         #check if this user exists
         if user is not None:
             login(request, user)
-            return redirect("profile", category="active")
+            return redirect("profile", category="active" , page_num="1")
         else:
             return render(request, "Pollapp/login.html", {
                 "message": "Invalid username or/and password"
@@ -307,6 +310,13 @@ def logout_function(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
+
+@api_view(['GET'])
+def api(request, api_data):
+    if api_data == "all":
+        api_all = Poll.objects.filter(private=False, active=True)
+        serializer = PollSerializer(api_all, many=True)
+        return Response(serializer.data)
 
 
 
