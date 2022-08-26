@@ -247,6 +247,16 @@ def create_poll(request):
         )
         poll.save()
         for answer in answers:
+            if answer == "":
+                poll.delete()
+                return render(request, "Pollapp/error_page.html", {
+                "message": "Answer can't be empty"
+                })
+            if answers.count(answer) > 1:
+                poll.delete()
+                return render(request, "Pollapp/error_page.html", {
+                "message": "There can't be two same answers"
+                })
             try:
                 option = Option.objects.get(question=answer)
             except:
@@ -317,6 +327,18 @@ def api(request, api_data):
         api_all = Poll.objects.filter(private=False, active=True)
         serializer = PollSerializer(api_all, many=True)
         return Response(serializer.data)
+    else:
+        api_urls = Poll.objects.all().values_list('url', flat=True)
+        if api_data in api_urls:
+            try:
+                api_data = Poll.objects.get(url=api_data)
+                serializer = PollSerializer(api_data)
+                return Response(serializer.data)
+            except:
+                return render(request, "Pollapp/error_page.html", {
+                "message": "Error while geting data"
+            })
+
 
 
 

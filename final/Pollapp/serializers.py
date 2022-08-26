@@ -14,16 +14,21 @@ class OptionSerializer(serializers.ModelSerializer):
         fields = "question",
 
 class VotesSerializer(serializers.ModelSerializer):
-    voter = UserSerializer(read_only=True)
     option = OptionSerializer(read_only=True)
     class Meta():
         model = Votes
-        fields = "voter", "option"
+        fields = "option",
 
 class PollSerializer(serializers.ModelSerializer):
     votes = VotesSerializer(read_only=True, many=True)
     likes = UserSerializer(read_only=True, many=True)
     options = OptionSerializer(read_only=True, many=True)
+    user = UserSerializer(read_only=True)
+    likes = serializers.IntegerField(
+        source='likes.count', 
+        read_only=True
+    )
+    
     class Meta():
         model = Poll
         fields = "__all__"
