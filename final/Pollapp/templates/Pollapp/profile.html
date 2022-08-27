@@ -5,8 +5,10 @@
     <div style="min-width:100%;" class="card-content">
       <div style="min-width:100%;" class="media">
         <div style="min-width:100%;" class="media-content">
+          <a class="button is-link is-rounded small-bottom-margin" href="{% url 'api_info' %}">API</a>
           <p class="title is-4">{{user.username}}</p>
           <p class="subtitle is-6">{{user.email}}</p>
+          
         </div>
       </div>
   
@@ -14,6 +16,7 @@
         <br>
         <time datetime="2016-1-1">Profile created on: {{user.date_joined}}</time>
       </div>
+      
       <div class="tabs is-centered">
         <ul>
           

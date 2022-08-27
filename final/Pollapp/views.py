@@ -24,6 +24,9 @@ def contact(request):
 def about(request):
     return render(request, "Pollapp/about.html")
 
+def api_info(request):
+    return render(request, "Pollapp/api.html")
+
 def pagination(pag_objects, page_num):
     page_view = Paginator(pag_objects,5)
     page_info = {

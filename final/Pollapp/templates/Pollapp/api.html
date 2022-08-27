@@ -1,0 +1,64 @@
+{% extends "Pollapp/layout.html" %}
+
+{% block body %}
+<div class="card poll">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-2">How to use Pollapp API</p>
+          <p class="title is-4">1. Go to "/api/all" for information about all public and active polls on Pollapp</p>
+          <p class="title is-4">1. Go to "/api/{url code}" for information about specific poll. You can also access private and disactivated polls if you have their url codes</p>
+          <p class="title is-5">You can find url codes after "/poll/" while visiting poll page.</p>
+          <p class="title is-5">Example: when you visit "/poll/foo" your url code is "foo"</p>
+
+          <p class="title is-2">Example responce structure</p>
+          <pre>
+{
+    "id": 4,
+    "votes": [
+        {
+            "option": {
+                "question": "option#1"
+            }
+        },
+        {
+            "option": {
+                "question": "option#2"
+            }
+        },
+        {
+            "option": {
+                "question": "option#2"
+            }
+        }
+    ],
+    "options": [
+        {
+            "question": "option#11"
+        },
+        {
+            "question": "option#2"
+        },
+        {
+            "question": "option#3"
+        },
+        {
+            "question": "option#4"
+        }
+    ],
+    "user": {
+        "username": "user#1"
+    },
+    "likes": 1,
+    "url": "HVvtskKloaDips",
+    "poll_question": "Test poll #1",
+    "private": false,
+    "active": true
+}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock%}

@@ -2,6 +2,10 @@
     margin-bottom: 20px;
 }
 
+pre{
+    text-align: left;
+    padding-left: 0px;
+}
 footer{
     width: 100% !important;
     margin-top: 16%;
