@@ -55,7 +55,12 @@
                         {% endfor %}
                       
                 </table>
+                {% else %}
+                <div class="notification is-warning is-light">
+                  You need to <strong>Login</strong> or <strong>Register</strong> to vote
+                </div>
                 {% endif %}
+
             </div>
           </div>
           
