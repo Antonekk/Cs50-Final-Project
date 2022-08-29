@@ -22,7 +22,8 @@ In the project, in addition to the previously known python, django, javascript, 
 #### 2. After opening it with your terminal use this command: "cd final"
 #### 3. Next run "python manage.py runserver"
 #### 4. Open your browser and go to "http://127.0.0.1:8000" and you sould be able to use Pollapp
-##### If you want to use admin panel you can run this command: "python manage.py createsuperuser" 
+##### If you want to use admin panel you can run this command: "python manage.py createsuperuser"
+##### There is already one superuser created, you can use it if you want - Username: cs50  Password: cs50
 
 ## Tools used while creating Pollapp
 
@@ -36,6 +37,16 @@ In the project, in addition to the previously known python, django, javascript, 
 ###### -     Bulma | Used to make frontend design look good
 ###### -     Fontawesome | Used to get access to many icons
 
+
+## How to use Pollapp
+
+#### 1. Create new account by clicking Register button (you can also login with already created superuser profile)
+#### 2. Go to "Polls" and click on "Create" button in order to create new poll
+#### 3. You can enter Question, Ansewrs  (minimum 2 and maximum 10) and specify if you want your poll to be public or not (public- users will be able to see it on "polls" page, private - only users with link will be able to see it)
+#### 4. Send poll link to your friends to vote and like (they need to be logged in to vote and like)
+#### 5. If you dont want your poll to be active you can deactivate it by clicking in "Deactivate" button
+#### 6. By clicking on "Profile' you can see your Active, Liked and Deactivated polls
+
 ## How to use Pollapp API's
 
 #### 1. Go to "/api/all" for information about all public and active polls on Pollapp
@@ -43,4 +54,6 @@ In the project, in addition to the previously known python, django, javascript, 
 ###### You can find url codes after "/poll/" while visiting poll page.
 ###### Example: when you visit "/poll/foo" your url code is "foo"
 ###### You can use Pollapp API's even if you are not logged in 
+
+
 
