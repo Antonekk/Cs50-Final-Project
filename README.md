@@ -35,3 +35,12 @@ In the project, in addition to the previously known python, django, javascript, 
 #### - CSS | Used to style HTML
 ###### -     Bulma | Used to make frontend design look good
 ###### -     Fontawesome | Used to get access to many icons
+
+## How to use Pollapp API's
+
+#### 1. Go to "/api/all" for information about all public and active polls on Pollapp
+#### 1. Go to "/api/poll/{url code}" for information about specific poll. You can also access private and disactivated polls if you have their url codes
+###### You can find url codes after "/poll/" while visiting poll page.
+###### Example: when you visit "/poll/foo" your url code is "foo"
+###### You can use Pollapp API's even if you are not logged in 
+
