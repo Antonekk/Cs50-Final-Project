@@ -325,23 +325,25 @@ def logout_function(request):
 
 
 @api_view(['GET'])
-def api(request, api_data):
-    if api_data == "all":
-        api_all = Poll.objects.filter(private=False, active=True)
-        serializer = PollSerializer(api_all, many=True)
-        return Response(serializer.data)
-    else:
-        api_urls = Poll.objects.all().values_list('url', flat=True)
-        if api_data in api_urls:
-            try:
-                api_data = Poll.objects.get(url=api_data)
-                serializer = PollSerializer(api_data)
-                return Response(serializer.data)
-            except:
-                return render(request, "Pollapp/error_page.html", {
-                "message": "Error while geting data"
-            })
+def api(request):
+    api_all = Poll.objects.filter(private=False, active=True)
+    serializer = PollSerializer(api_all, many=True)
+    return Response(serializer.data)
 
+        
+
+@api_view(['GET'])
+def api_specific(request, api_data):
+    api_urls = Poll.objects.all().values_list('url', flat=True)
+    if api_data in api_urls:
+        try:
+            api_data = Poll.objects.get(url=api_data)
+            serializer = PollSerializer(api_data)
+            return Response(serializer.data)
+        except:
+            return render(request, "Pollapp/error_page.html", {
+            "message": "Error while geting data"
+        })
 
 
 

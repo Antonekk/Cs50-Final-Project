@@ -14,6 +14,7 @@ urlpatterns = [
     path("poll/<str:url>", views.poll_page, name="poll_page"),
     path("like/<str:url>", views.like, name="like"),
     path("deactivate/<str:url>", views.deactivate, name="deactivate"),
-    path('api/<str:api_data>', views.api, name="api"),
+    path('api/all', views.api, name="api"),
+    path('api/poll/<str:api_data>', views.api_specific, name="api_specific"),
     path('api_info', views.api_info, name="api_info"),
 ]
