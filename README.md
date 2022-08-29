@@ -28,9 +28,10 @@ In the project, in addition to the previously known python, django, javascript, 
 
 #### - Python | Used as backend programming language
 #### - Django | Python based framework I used to create backend for Pollapp
-##### - Django REST framework | Used to create Pollapp API's 
+###### -     Django REST framework | Used to create Pollapp API's 
 #### - Javascript | Used to create frontend features
-##### - Charts.js | Used to create pie charts of number of votes each option had in poll
+###### -     Charts.js | Used to create pie charts of number of votes each option had in poll
 #### - HTML | Standard markup language for Web pages
 #### - CSS | Used to style HTML
-##### - Bulma | Used to make frontend design look good
+###### -     Bulma | Used to make frontend design look good
+###### -     Fontawesome | Used to get access to many icons
