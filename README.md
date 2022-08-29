@@ -5,3 +5,13 @@ My final project for Cs50: Web Programming with Python and JavaScript
 This project was very challanging for me. For the first time, I created a project completely from scratch and by myself.
 When creating Pollapp, I used almost everything I learned during the course, and even more. 
 In the project, in addition to the previously known python, django, javascript, html, css, I also used: Django REST framework which helped me create an API, Bulma which helped me make the website look good and Chart.js which helped me make graphs for polls
+
+## What’s contained in each file:
+
+#### - views.py: all the backend logic behind rendering templates
+#### - urls.py: all the paths on the website
+#### - serializers.py: converting database results to json responce
+#### - models.py: is where all the sql django models are
+#### - templates folder : there are all the html files that Pollapp uses
+#### - static folder : there are all the .js and .css and images files that are use within Pollapp
+#### - Rest of the files are just basic, unchanged django files that are create while starting django project
