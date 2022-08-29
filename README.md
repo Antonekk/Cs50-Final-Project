@@ -15,3 +15,11 @@ In the project, in addition to the previously known python, django, javascript, 
 #### - templates folder : there are all the html files that Pollapp uses
 #### - static folder : there are all the .js and .css and images files that are use within Pollapp
 #### - Rest of the files are just basic, unchanged django files that are create while starting django project
+
+## How to run Pollapp on your device
+
+#### 1. Clone Pollapp github repository
+#### 2. After opening it with your terminal use this command: "cd final"
+#### 3. Next run "python manage.py runserver"
+#### 4. Open your browser and go to "http://127.0.0.1:8000" and you sould be able to use Pollapp
+#### * If you want to use admin panel you can run this command: "python manage.py createsuperuser"
