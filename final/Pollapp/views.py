@@ -223,6 +223,14 @@ def create_poll(request):
         return render(request, "Pollapp/create_poll.html")
     elif request.method == "POST":
         question = request.POST['question_name']
+        if len(question) < 5:
+            return render(request, "Pollapp/error_page.html", {
+                "message": "Question must be at least 5 characters long"
+                })
+        elif len(question) > 64:
+            return render(request, "Pollapp/error_page.html", {
+                "message": "Question can't be longer than 64 characters"
+                })
         try:
             is_private = request.POST['private']
             is_private = True
@@ -250,10 +258,14 @@ def create_poll(request):
         )
         poll.save()
         for answer in answers:
-            if answer == "":
+            if len(answer) < 1:
                 poll.delete()
                 return render(request, "Pollapp/error_page.html", {
-                "message": "Answer can't be empty"
+                "message": "Answer must be at least 1 character long"
+                })
+            elif len(answer) > 64 :
+                return render(request, "Pollapp/error_page.html", {
+                "message": "Answer can't be longer than 64 characters"
                 })
             if answers.count(answer) > 1:
                 poll.delete()
