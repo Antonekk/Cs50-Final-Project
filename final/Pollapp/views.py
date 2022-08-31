@@ -301,6 +301,19 @@ def register (request):
         username = request.POST["username"]
         email = request.POST["email"]
 
+        if len(username) < 5:
+            return render(request, "Pollapp/register.html", {
+                "message": "Username must be at least 5 characters long"
+            })
+        if len(password) < 5:
+            return render(request, "Pollapp/register.html", {
+                "message": "Password must be at least 5 characters long"
+            })
+        if any(not c.isalnum() for c in username):
+            return render(request, "Pollapp/register.html", {
+                "message": "Username can't contain special characters"
+            })
+
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
